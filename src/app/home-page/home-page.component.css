@@ -66,37 +66,6 @@
   /* grid-column-end: span 6; */
 }
 
-.overlay {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  -webkit-transform: translateX(-200px);
-  transform: translateX(-200px);
-  background: none;
-  border: none;
-  display: inline-flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.mediaControl {
-  font-size: 34px;
-  background: none;
-  border: none;
-  color: #f5f5f5d1;
-}
-
-.filter {
-  filter: blur(2px) hue-rotate(45deg);
-  /* filter: saturate(125%) brightness(125%);  */
-}
-
-.spotifyButton:hover {
-  background-color: #cccaca8a;
-  color: #00000099;
-  border-radius: 20px;
-}
-
 .home {
   padding: 0.25em;
   margin: 5px 0px;
@@ -163,4 +132,8 @@ searchIcon:hover {
 .menu-list a:hover {
   background-color: #f5f5f5;
   color: #1d81c3;
+}
+
+#changeBackgroundButton {
+  margin: 5px;
 }

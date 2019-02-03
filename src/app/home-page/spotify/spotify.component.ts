@@ -20,7 +20,7 @@ export class SpotifyComponent implements OnInit {
       .split("&")[0];
 
     this.spotify();
-    timer(0, 30000).subscribe(() => this.spotify());
+    timer(0, 10000).subscribe(() => this.spotify());
   }
 
   spotify() {
