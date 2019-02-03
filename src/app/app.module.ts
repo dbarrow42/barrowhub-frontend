@@ -11,13 +11,15 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeroBackgroundService } from './services/hero-background.service';
+import { SpotifyComponent } from './home-page/spotify/spotify.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     WeatherComponent,
     PugComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SpotifyComponent
   ],
   imports: [
     BrowserModule,

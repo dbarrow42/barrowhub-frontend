@@ -127,7 +127,6 @@ export class HomePageComponent implements OnInit {
         )
         .subscribe(track => {
           this.track = track;
-          console.log(track);
         });
     }, 350);
   }

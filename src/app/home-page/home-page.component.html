@@ -78,40 +78,7 @@
   </div>
 
   <div class="content flexContainer">
-    <div
-      (mouseover)="hovered = true"
-      (mouseleave)="hovered = false"
-      *ngIf="track.title.length > 0"
-    >
-      <img
-        src="{{track.imgUrl}}"
-        style="width: 200px; height:200px; border-radius: 4px;"
-        [class.filter]="hovered"
-      />
-      <span class="overlay" *ngIf="hovered">
-        <a class="button is-large mediaControl" (click)="previous()">
-          <span class="icon spotifyButton">
-            <i class="fas fa-backward"></i>
-          </span>
-        </a>
-        <a class="button is-large mediaControl" (click)="pauseOrPlay()">
-          <span class="icon spotifyButton">
-            <i
-              class="fas fa-pause"
-              *ngIf="track.isPlaying; else: playButton"
-            ></i>
-            <ng-template #playButton><i class="fas fa-play"></i></ng-template>
-          </span>
-        </a>
-        <a class="button is-large mediaControl" (click)="next()">
-          <span class="icon spotifyButton">
-            <i class="fas fa-forward"></i>
-          </span>
-        </a>
-      </span>
-    </div>
-    <p style="margin: 0;">{{ track.title }}</p>
-    <p>{{ track.artist }}</p>
+    <app-spotify></app-spotify>
   </div>
   <aside class="menu appList">
     <ul class="menu-list" style="list-style: none; margin: 0">
