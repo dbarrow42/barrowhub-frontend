@@ -1,0 +1,17 @@
+<div class="card has-background-light" *ngIf="showWeather">
+  <header class="card-header has-background-grey-lighter">
+    <p class="card-header-title is-centered has-text-dark" *ngIf="!weather.isToday">{{weather.time | date:'EEEE'}}</p>
+    <p class="card-header-title is-centered has-text-dark" *ngIf="weather.isToday">Now</p>
+  </header>
+  <div class="card-image">
+    <figure class="image" style="margin: 1rem">
+      <canvas attr.id="icon{{number}}" width="80" height="80" [style.background-color]="weatherColor" class="weatherIcon"></canvas>
+    </figure>
+  </div>
+  <div class="card-content">
+      <p class="subtitle has-text-centered has-text-dark" style="margin-top: .5rem"> 
+          {{weather.temperature}}
+        </p>
+    <p class="subtitle is-6 has-text-centered has-text-dark">{{ weather.summary }}</p>
+  </div>
+</div>

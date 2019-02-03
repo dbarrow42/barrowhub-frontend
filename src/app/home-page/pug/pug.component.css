@@ -1,0 +1,9 @@
+.figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pugButton {
+    width: fit-content;
+}

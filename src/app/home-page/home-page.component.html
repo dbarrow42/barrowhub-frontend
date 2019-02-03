@@ -1,0 +1,175 @@
+<nav class="navbar has-shadow">
+  <div class="level">
+    <div class="level-left">
+      <a
+        routerLink="/"
+        class="title level-item has-text-grey"
+        style="margin-bottom: 0"
+        ><h1 class="home">bArrow_hub</h1></a
+      >
+    </div>
+  </div>
+</nav>
+<section class="hero is-medium" style="margin-top: 5px;">
+  <div class="has-bg-img" [style.background-image]="backgroundImage">
+    <div class="hero-body">
+      <div
+        class="field has-addons"
+        style="display: flex;justify-content: center;"
+      >
+        <div class="control">
+          <input
+            class="input is-large tooltip is-tooltip-bottom"
+            type="text"
+            (keyup.enter)="search()"
+            [(ngModel)]="searchString"
+            placeholder="Google?"
+            autofocus
+            data-tooltip="Tooltip Text"
+          />
+        </div>
+        <div class="control searchButton" *ngIf="searchString.length > 0">
+          <a
+            class="button is-large is-light"
+            [class.is-loading]="googleSearch"
+            [@fadeInOut]
+            (click)="search()"
+          >
+            <span class="icon is-large searchIcon">
+              <i class="fas fa-search"></i>
+            </span>
+            <span>Search</span>
+          </a>
+        </div>
+      </div>
+      <a (click)="setImg()" class="button is-info is-inverted is-outlined is-pulled-right is-small"
+      ><i class="fas fa-sync is-light"></i
+    ></a>
+    </div>
+  </div>
+</section>
+<div class="content grid-container">
+  <app-pug class="pug"></app-pug>
+  <div class="billTable">
+    <div *ngIf="searching" style="width:100%; margin-top: 25px" class="billTable">
+      <p class="subtitle is-italic">Getting bills...</p>
+      <progress
+        style="margin-bottom: 0em; max-width: 100%;"
+        class="progress is-medium is-primary"
+        [value]="progress"
+        max="100"
+        [style.transform]="flipped ? 'rotate(180deg)' : ''"
+      ></progress>
+    </div>
+    <table class="table is-striped is-narrow is-hoverable" *ngIf="!searching">
+      <tr class="has-background-grey-lighter">
+        <th class="has-text-black-ter">From</th>
+        <th class="has-text-black-ter">Date</th>
+        <th class="has-text-black-ter">Due</th>
+        <th class="has-text-black-ter">Half</th>
+      </tr>
+      <tr *ngFor="let bill of bills">
+        <td>{{ bill.from }}</td>
+        <td>{{ bill.date }}</td>
+        <td>{{ bill.due }}</td>
+        <td>{{ bill.half }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="content flexContainer">
+    <div
+      (mouseover)="hovered = true"
+      (mouseleave)="hovered = false"
+      *ngIf="track.title.length > 0"
+    >
+      <img
+        src="{{track.imgUrl}}"
+        style="width: 200px; height:200px; border-radius: 4px;"
+        [class.filter]="hovered"
+      />
+      <span class="overlay" *ngIf="hovered">
+        <a class="button is-large mediaControl" (click)="previous()">
+          <span class="icon spotifyButton">
+            <i class="fas fa-backward"></i>
+          </span>
+        </a>
+        <a class="button is-large mediaControl" (click)="pauseOrPlay()">
+          <span class="icon spotifyButton">
+            <i
+              class="fas fa-pause"
+              *ngIf="track.isPlaying; else: playButton"
+            ></i>
+            <ng-template #playButton><i class="fas fa-play"></i></ng-template>
+          </span>
+        </a>
+        <a class="button is-large mediaControl" (click)="next()">
+          <span class="icon spotifyButton">
+            <i class="fas fa-forward"></i>
+          </span>
+        </a>
+      </span>
+    </div>
+    <p style="margin: 0;">{{ track.title }}</p>
+    <p>{{ track.artist }}</p>
+  </div>
+  <aside class="menu appList">
+    <ul class="menu-list" style="list-style: none; margin: 0">
+      <li>
+        <a
+          class="appSpacing"
+          href="https://youtube.com"
+          target="_blank"
+          rel="noopener"
+          ><i class="fab fa-youtube"></i
+        ></a>
+      </li>
+      <li>
+        <a
+          class="appSpacing"
+          href="https://twitter.com"
+          target="_blank"
+          rel="noopener"
+          ><i class="fab fa-twitter"></i
+        ></a>
+      </li>
+      <!--
+        <li>
+          <a class="appSpacing" href="https://spotify.com" target="_blank" rel="noopener"><i class="fab fa-spotify"></i></a>
+        </li>
+      -->
+      <li>
+        <a
+          class="appSpacing"
+          href="https://amazon.com"
+          target="_blank"
+          rel="noopener"
+          ><i class="fab fa-amazon"></i
+        ></a>
+      </li>
+      <li>
+        <a
+          class="appSpacing"
+          href="https://gmail.com"
+          target="_blank"
+          rel="noopener"
+          ><i class="fas fa-envelope"></i
+        ></a>
+      </li>
+      <li>
+        <a
+          class="appSpacing"
+          href="https://netflix.com"
+          target="_blank"
+          rel="noopener"
+          ><i class="fas fa-film"></i
+        ></a>
+      </li>
+    </ul>
+  </aside>
+  <app-weather
+    *ngFor="let weather of weatherReports; index as i"
+    [weather]="weatherReports[i]"
+    [number]="i"
+  ></app-weather>
+</div>

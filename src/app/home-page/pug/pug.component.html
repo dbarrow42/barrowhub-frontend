@@ -1,0 +1,12 @@
+<figure class="image figure">
+  <img
+    [src]="pug.pugPic"
+    style="width: 85%; border-radius: 12px;"
+  />
+</figure>
+<a class="button is-info pugButton is-medium" (click)="getPug()" [class.is-loading]="loading">
+    <span>Random Pug</span>
+    <span class="icon">
+      <i class="fas fa-dog"></i>
+    </span>
+  </a>
