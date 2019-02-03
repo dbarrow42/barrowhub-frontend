@@ -21,11 +21,23 @@ export class HeroBackgroundService {
     "http://www.espaciobyte.org/exp/117/hd/12.gif",
     "https://i2.wp.com/media.boingboing.net/wp-content/uploads/2015/09/coffee_in_rain_by_kirokaze-d98qb8z.gif?fit=1100%2C582&ssl=1"
   ];
+  private lastUsedBackgrounds: number[] = [];
 
   public getRandomBackground(): String {
-    return this.backgrounds[
-      Math.floor(Math.random() * this.backgrounds.length)
-    ];
+    // Don't reuse the most recent three backgrounds
+    let index = this.getRandomIndex();
+    while(this.lastUsedBackgrounds.indexOf(index) > 0) {
+      index = this.getRandomIndex();
+    }
+    if(this.lastUsedBackgrounds.length == 3) {
+      this.lastUsedBackgrounds.pop();
+    }
+    this.lastUsedBackgrounds.unshift(index);
+    return this.backgrounds[index];
+  }
+
+  private getRandomIndex() {
+    return Math.floor(Math.random() * this.backgrounds.length);
   }
 
   constructor() {}
